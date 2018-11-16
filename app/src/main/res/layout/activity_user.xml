@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.opet.infoshopping.Activity.UserActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="88dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="COSH!"
+            android:textAlignment="center"
+            android:textColor="@color/accent_material_dark"
+            android:textSize="50px" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="150px"></LinearLayout>
+
+        <Spinner
+            android:id="@+id/spinnerEstado"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:entries="@array/estados_array"
+            android:textAlignment="center" />
+
+        <Spinner
+            android:id="@+id/spinnerCidade"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:entries="@array/cidades_array"
+            android:textAlignment="center" />
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="150px"></LinearLayout>
+
+        <Button
+            android:id="@+id/pesquisar"
+            android:onClick="pesquisar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Pesquisar" />
+
+        <Button
+            android:id="@+id/editarDados"
+            android:onClick="editarDados"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Editar" />
+
+
+    </LinearLayout>
+
+</LinearLayout>

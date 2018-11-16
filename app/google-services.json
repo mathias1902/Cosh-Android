@@ -1,0 +1,79 @@
+{
+  "project_info": {
+    "project_number": "241175224461",
+    "firebase_url": "https://bancocosh-a8b9a.firebaseio.com",
+    "project_id": "bancocosh-a8b9a",
+    "storage_bucket": "bancocosh-a8b9a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:241175224461:android:4ff0c8bc640a460f",
+        "android_client_info": {
+          "package_name": "com.example.opet.coshapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "241175224461-dnjoi261o6fo3r90a30rpd2l476256pl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.opet.coshapp",
+            "certificate_hash": "c412b82f5ad5e25185f8a24e2ee1e3c39ccfc9b3"
+          }
+        },
+        {
+          "client_id": "241175224461-3r43emvr0q87tm4o8ralbrf0u3aprod7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.opet.coshapp",
+            "certificate_hash": "2916ee0617a227f4efc2ef9427d555e8bce178b7"
+          }
+        },
+        {
+          "client_id": "241175224461-56euh4kkhmrdsg5hteb3aodhd9uoidhj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.opet.coshapp",
+            "certificate_hash": "80d76f63279aabebbef127cede6feb3b18325457"
+          }
+        },
+        {
+          "client_id": "241175224461-7ahin5j2amccibbmra4fraopoa53680g.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.opet.coshapp",
+            "certificate_hash": "a08c452908db52c14c40c2ceb4f3c7f7e164aa2b"
+          }
+        },
+        {
+          "client_id": "241175224461-p9m8t7n3u3u65h27u7j04gamvijjldj9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBuQBXlmwIQeYeHP4t7ZxxZfjM19hN_ozw"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "241175224461-p9m8t7n3u3u65h27u7j04gamvijjldj9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
