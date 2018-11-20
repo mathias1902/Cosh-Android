@@ -44,6 +44,15 @@
             tools:layout_editor_absoluteX="16dp"
             tools:layout_editor_absoluteY="-2dp" />
 
+        <Button
+            android:id="@+id/facebookLogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="logarFacebook"
+            android:text="Logar Facebook"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="-2dp" />
+
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

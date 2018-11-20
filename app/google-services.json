@@ -55,6 +55,14 @@
           }
         },
         {
+          "client_id": "241175224461-hh9cd4lvk222iiemcq3ddkkqoe7ijcjs.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.opet.coshapp",
+            "certificate_hash": "ed5a990563077b6d2eca4e6e2090ba3b31037887"
+          }
+        },
+        {
           "client_id": "241175224461-p9m8t7n3u3u65h27u7j04gamvijjldj9.apps.googleusercontent.com",
           "client_type": 3
         }

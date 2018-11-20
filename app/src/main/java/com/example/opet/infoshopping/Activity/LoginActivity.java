@@ -5,15 +5,16 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-import com.facebook.FacebookSdk;
-import com.facebook.appevents.AppEventsLogger;
 
 import com.example.opet.infoshopping.R;
-import com.example.opet.infoshopping.Repository.ClienteRepository;
-import com.example.opet.infoshopping.Util.Util;
+import com.facebook.AccessToken;
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.login.LoginResult;
+import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -25,6 +26,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class LoginActivity extends AppCompatActivity {
 
+
     private FirebaseAuth mAuth;
     private EditText editLogin;
     private EditText editSenha;
@@ -34,9 +36,12 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+
         mAuth = FirebaseAuth.getInstance();
         editLogin = findViewById(R.id.editEmailLogin);
         editSenha = findViewById(R.id.editSenhaLogin);
+
+        mAuth = FirebaseAuth.getInstance();
 
     }
 
@@ -61,6 +66,7 @@ public class LoginActivity extends AppCompatActivity {
                     }
                 } );
     }
+
 
     /*public void logarUsuario(View v){
         String login = editLogin.getText().toString();

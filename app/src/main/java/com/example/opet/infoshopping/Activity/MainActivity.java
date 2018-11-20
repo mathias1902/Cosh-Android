@@ -39,5 +39,11 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void logarFacebook(View view){
+
+        Intent intent = new Intent(this, LoginFacebookActivity.class);
+        startActivity(intent);
+    }
+
 
 }

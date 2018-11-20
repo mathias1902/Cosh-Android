@@ -29,6 +29,8 @@
         <activity android:name=".Activity.ManutencaoClienteActivity"/>
         <activity android:name=".Activity.UserActivity"/>
         <activity android:name=".Activity.EditarActivity"/>
+        <activity android:name=".Activity.NovaActivity"/>
+        <activity android:name=".Activity.LoginFacebookActivity"/>
         <activity android:name="me.iwf.photopicker.PhotoPickerActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar"
             />
@@ -53,6 +55,7 @@
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
         </activity>
+
 
     </application>
 
