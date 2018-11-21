@@ -59,7 +59,7 @@ public class LoginFacebookActivity extends Activity {
     }
 
     private void logar(){
-        Intent novaIntent = new Intent(LoginFacebookActivity.this,NovaActivity.class);
+        Intent novaIntent = new Intent(LoginFacebookActivity.this,UserActivity.class);
         startActivity(novaIntent);
     }
 

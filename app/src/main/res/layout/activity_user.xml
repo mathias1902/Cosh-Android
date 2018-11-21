@@ -31,7 +31,6 @@
             android:id="@+id/spinnerEstado"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:entries="@array/estados_array"
             android:textAlignment="center" />
 
         <Spinner

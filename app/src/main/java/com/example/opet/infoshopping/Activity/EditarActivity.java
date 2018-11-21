@@ -1,5 +1,6 @@
 package com.example.opet.infoshopping.Activity;
 
+import android.arch.persistence.room.Update;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -12,8 +13,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.opet.infoshopping.R;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
@@ -38,8 +41,10 @@ public class EditarActivity extends AppCompatActivity {
     private TextView textView;
     private EditText TextNome;
     private EditText TextEmail;
+    private EditText TextSenha;
     String nome = null;
     String email = null;
+    String senha = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +57,7 @@ public class EditarActivity extends AppCompatActivity {
         textView = findViewById(R.id.textView);
         TextNome = findViewById(R.id.TextNome);
         TextEmail = findViewById(R.id.TextEmail);
+        TextSenha = findViewById(R.id.TextSenha);
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
@@ -91,6 +97,7 @@ public class EditarActivity extends AppCompatActivity {
             StorageReference photoRef = mStorageRef.child("images");
             GetUser();
             UpdateUser();
+            UpdateSenha();
             CleanUser();
             photoRef.putFile(file).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
@@ -120,6 +127,28 @@ public class EditarActivity extends AppCompatActivity {
         Uri image = Uri.parse(photos.get(0));
         user.updateProfile(new UserProfileChangeRequest.Builder().setDisplayName(nome).setPhotoUri(image).build());
     }
+
+    private void UpdateSenha() {
+
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        senha = TextSenha.getText().toString();
+
+        user.updatePassword(senha).addOnCompleteListener(this, new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()){
+                    Toast.makeText(EditarActivity.this, "Sucesso", Toast.LENGTH_SHORT).show();
+
+                }
+                else {
+                    Toast.makeText(EditarActivity.this, "Falha", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+    }
+
+
     private void CleanUser(){
         TextNome.setText(null);
         TextEmail.setText(null);
