@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.opet.infoshopping.Activity.RemoverCidadeActivity">
+
+    <EditText
+        android:id="@+id/nomeCidade"
+        android:hint="Nome da Cidade"
+        android:layout_width="match_parent"
+
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/btnExcluir"
+        android:text="Remover"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+
+</LinearLayout>

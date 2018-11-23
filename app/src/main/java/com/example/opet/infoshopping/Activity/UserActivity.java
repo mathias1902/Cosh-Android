@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.opet.infoshopping.Model.Cidade;
 import com.example.opet.infoshopping.Model.Cliente;
 import com.example.opet.infoshopping.R;
 import com.facebook.stetho.Stetho;
@@ -39,6 +40,7 @@ public class UserActivity extends AppCompatActivity {
     public static Cliente clienteLogado;
 
     private List<String> estados;
+    private List<String> cidades;
 
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -55,6 +57,7 @@ public class UserActivity extends AppCompatActivity {
         cidadeSpinner.setEnabled(false);
 
         estadoSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if(position != 0){
@@ -84,21 +87,6 @@ public class UserActivity extends AppCompatActivity {
 
             }
         });
-
-        cidadeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if(position != 0) {
-                    String selecionada = cidadeSpinner.getSelectedItem().toString();
-                    Toast.makeText(UserActivity.this, selecionada, Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
     }
 
 
@@ -107,6 +95,7 @@ public class UserActivity extends AppCompatActivity {
         super.onStart();
 
         carregarListaEstados();
+
     }
 
     public void pesquisar (View view){
@@ -131,6 +120,12 @@ public class UserActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void editarCidades(View view){
+
+        Intent intent = new Intent(UserActivity.this, ManageActivity.class);
+        startActivity(intent);
+    }
+
     public void carregarListaEstados() {
         Query mQuery = mDatabase.child("estados");
         mQuery.addValueEventListener(new ValueEventListener() {
@@ -151,8 +146,28 @@ public class UserActivity extends AppCompatActivity {
 
             }
         });
+    }
 
+    public void carregarListaCidades() {
+        Query mQuery = mDatabase.child("cidades");
+        mQuery.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                cidades.clear();
+                for(DataSnapshot cidadesSnapshot : dataSnapshot.getChildren()){
+                    cidades.add(cidadesSnapshot.getValue(String.class));
+                }
 
+                ArrayAdapter<String> adapter = new ArrayAdapter<String>(UserActivity.this,android.R.layout.simple_spinner_item,cidades);
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                cidadeSpinner.setAdapter(adapter);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 
 }

@@ -30,6 +30,8 @@
         <activity android:name=".Activity.UserActivity"/>
         <activity android:name=".Activity.EditarActivity"/>
         <activity android:name=".Activity.LoginFacebookActivity"/>
+        <activity android:name=".Activity.ManageActivity" />
+        <activity android:name=".Activity.RemoverCidadeActivity" />
         <activity android:name="me.iwf.photopicker.PhotoPickerActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar"
             />

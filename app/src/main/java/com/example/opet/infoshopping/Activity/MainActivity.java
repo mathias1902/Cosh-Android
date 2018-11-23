@@ -14,7 +14,7 @@ import com.example.opet.infoshopping.R;
 import com.example.opet.infoshopping.Repository.ClienteRepository;
 import com.facebook.stetho.Stetho;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity  {
 
     Spinner estadoSpinner;
     Spinner cidadeSpinner;
