@@ -16,6 +16,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -50,29 +51,53 @@ public class CadastroActivity extends AppCompatActivity {
         String email = editTextEmail.getText().toString();
         String senha = editTextSenha.getText().toString();
 
-        mAuth.createUserWithEmailAndPassword(email, senha)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                        if (task.isSuccessful()) {
+        if (email.equals("") || senha.equals("")) {
 
-                            UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
-                                    .setDisplayName(nome).build();
-                            user.updateProfile(profileUpdates);
+            Toast.makeText(this, "Todos campos devem ser preenchidos!", Toast.LENGTH_SHORT).show();
 
-                            Toast.makeText(CadastroActivity.this, "Usuário cadastro com sucesso!", Toast.LENGTH_SHORT).show();
-                        } else {
-                            Toast.makeText(CadastroActivity.this, "Falha no cadastro!", Toast.LENGTH_SHORT).show();
+        }
+
+        if (validarEmail(email) == false) {
+            Toast.makeText(this, "Preencha com um email válido!", Toast.LENGTH_SHORT).show();
+        }
+        else {
+
+            mAuth.createUserWithEmailAndPassword(email, senha)
+                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                            if (task.isSuccessful()) {
+
+                                UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                                        .setDisplayName(nome).build();
+                                user.updateProfile(profileUpdates);
+
+                                Toast.makeText(CadastroActivity.this, "Usuário cadastro com sucesso!", Toast.LENGTH_SHORT).show();
+                            } else {
+                                Toast.makeText(CadastroActivity.this, "Falha no cadastro!", Toast.LENGTH_SHORT).show();
+                            }
                         }
-                    }
-                });
+                    });
+
+        }
+
+
     }
 
     public void voltarTela(View v) {
 
         Intent intent = new Intent(CadastroActivity.this, MainActivity.class);
         startActivity(intent);
+
+    }
+
+    private boolean validarEmail(final String email) {
+
+        if (Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            return true;
+        }
+        return false;
 
     }
 }

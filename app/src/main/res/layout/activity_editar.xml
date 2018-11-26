@@ -41,12 +41,14 @@
         android:onClick="photoPickerFunction"
         android:id="@+id/btnFoto"
         android:text="Selecionar Foto"
+        android:textColor="@color/colorPrimaryTextBotao"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
     <Button
         android:onClick="sendPhotoFunction"
         android:id="@+id/btnEnviar"
         android:text="Enviar Registro"
+        android:textColor="@color/colorPrimaryTextBotao"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 

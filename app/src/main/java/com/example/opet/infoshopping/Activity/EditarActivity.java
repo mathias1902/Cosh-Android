@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -92,33 +93,56 @@ public class EditarActivity extends AppCompatActivity {
     }
 
     public void sendPhotoFunction(View view) {
-        if(photos.size() > 0){
-            Uri file = Uri.fromFile(new File(photos.get(0)));
-            StorageReference photoRef = mStorageRef.child("images");
-            GetUser();
-            UpdateUser();
-            UpdateSenha();
-            CleanUser();
-            photoRef.putFile(file).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                @Override
-                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                    Toast.makeText(EditarActivity.this, "Arquivo Enviado com sucesso!", Toast.LENGTH_SHORT).show();
+            if (photos.size() > 0) {
+                Uri file = Uri.fromFile(new File(photos.get(0)));
+                StorageReference photoRef = mStorageRef.child(FirebaseAuth.getInstance().getCurrentUser().getUid());
+                GetUser();
+                if (email.equals("") || senha.equals("") || nome.equals("")) {
+
+                    Toast.makeText(this, "Todos campos devem ser preenchidos!", Toast.LENGTH_SHORT).show();
+
                 }
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    Toast.makeText(EditarActivity.this, "Falha ao enviar arquivo.", Toast.LENGTH_SHORT).show();
+                if (validarEmail(email) == false) {
+
+                    Toast.makeText(this, "Por favor, preencha com um email válido!", Toast.LENGTH_SHORT).show();
+
                 }
-            });
-            resetForm();
-        }else{
-            Toast.makeText(this, "Nenhum arquivo carregado.", Toast.LENGTH_SHORT).show();
+                else {
+                    GetUser();
+                    UpdateUser();
+                    UpdateSenha();
+                }
+                CleanUser();
+                photoRef.putFile(file).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        Toast.makeText(EditarActivity.this, "Arquivo Enviado com sucesso!", Toast.LENGTH_SHORT).show();
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(EditarActivity.this, "Falha ao enviar arquivo.", Toast.LENGTH_SHORT).show();
+                    }
+                });
+                resetForm();
+            } else {
+                Toast.makeText(this, "Nenhum arquivo carregado.", Toast.LENGTH_SHORT).show();
+            }
         }
+
+    private boolean validarEmail(final String email) {
+
+        if (Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            return true;
+        }
+        return false;
+
     }
 
     private void GetUser(){
         nome = TextNome.getText().toString();
         email =  TextEmail.getText().toString();
+        senha = TextSenha.getText().toString();
 
     }
     private void UpdateUser(){
@@ -152,5 +176,6 @@ public class EditarActivity extends AppCompatActivity {
     private void CleanUser(){
         TextNome.setText(null);
         TextEmail.setText(null);
+        TextSenha.setText(null);
     }
 }

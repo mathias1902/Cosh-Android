@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.opet.infoshopping.Model.Cidade;
 import com.example.opet.infoshopping.R;
@@ -23,7 +24,7 @@ import java.util.ArrayList;
  * Created by opet on 23/11/2018.
  */
 
-public class RemoverCidadeActivity extends AppCompatActivity implements View.OnClickListener {
+public class RemoverCidadeActivity extends AppCompatActivity {
 
     private EditText nomeCidade;
     private DatabaseReference mDatabase;
@@ -36,38 +37,41 @@ public class RemoverCidadeActivity extends AppCompatActivity implements View.OnC
         setContentView(R.layout.activity_remover_cidade);
 
         nomeCidade = findViewById(R.id.nomeCidade);
-        btnExcluir = findViewById(R.id.btnSalvar);
-        btnExcluir.setOnClickListener(this);
+        btnExcluir = findViewById(R.id.btnExcluir);
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
     }
 
-    private String remove = nomeCidade.getText().toString();
 
-    public void removerCidade(Cidade cidade) {
+
+    public void removerCidade(View v) {
+       String remove = nomeCidade.getText().toString();
         mDatabase = FirebaseDatabase.getInstance().getReference();
-        Query query = mDatabase.child("cidades").orderByChild("nome").equalTo(remove);
 
-        query.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                for (DataSnapshot appleSnapshot: dataSnapshot.getChildren()) {
-                    appleSnapshot.getRef().removeValue();
+        if (remove.equals("")) {
+
+            Toast.makeText(this, "Todos campos devem ser preenchidos!", Toast.LENGTH_SHORT).show();
+
+        }
+        else {
+
+            Query query = mDatabase.child("cidades").orderByChild("nome").equalTo(remove);
+
+            query.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    for (DataSnapshot appleSnapshot: dataSnapshot.getChildren()) {
+                        appleSnapshot.getRef().removeValue();
+                    }
                 }
-            }
 
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
 
-            }
-        });
+                }
+            });
 
+        }
 
-    }
-
-    @Override
-    public void onClick(View v) {
-        Cidade cidade = new Cidade();
-        removerCidade(cidade);
     }
 }

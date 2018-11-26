@@ -30,7 +30,7 @@ import java.util.List;
  * Created by opet on 23/11/2018.
  */
 
-public class ManageActivity extends AppCompatActivity implements View.OnClickListener {
+public class ManageActivity extends AppCompatActivity implements View.OnClickListener{
 
     private EditText editNomeCidade;
     private Spinner spinnerEstado;
@@ -64,25 +64,42 @@ public class ManageActivity extends AppCompatActivity implements View.OnClickLis
 
     public void onClick(View view) {
         Cidade cidade = new Cidade();
-        cidade.setNome(editNomeCidade.getText().toString());
-        cidade.setEstado(spinnerEstado.getSelectedItem().toString());
-        salvarNovaCidade(cidade);
+
+        if (spinnerEstado.getSelectedItem().toString().equals("Escolha um estado")) {
+
+            Toast.makeText(this, "É necessário escolher um estado.", Toast.LENGTH_SHORT).show();
+
+        }
+        else {
+            cidade.setNome(editNomeCidade.getText().toString());
+            cidade.setEstado(spinnerEstado.getSelectedItem().toString());
+            salvarNovaCidade(cidade);
+        }
     }
 
     private void salvarNovaCidade(Cidade cidade) {
-        mDatabase.child("cidades").child(String.valueOf(cidade.generateTimeStamp())).setValue(cidade)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        Toast.makeText(ManageActivity.this, "Cidade Salva!", Toast.LENGTH_SHORT).show();
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(ManageActivity.this, "Erro ao Salvar a cidade...", Toast.LENGTH_SHORT).show();
-                    }
-                });
+
+        if (cidade.getNome().equals("")) {
+
+            Toast.makeText(this, "O campo cidade deve ser preenchido.", Toast.LENGTH_SHORT).show();
+
+        }
+        else{
+            mDatabase.child("cidades").child(String.valueOf(cidade.generateTimeStamp())).setValue(cidade)
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            Toast.makeText(ManageActivity.this, "Cidade Salva!", Toast.LENGTH_SHORT).show();
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(ManageActivity.this, "Erro ao Salvar a cidade...", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+        }
+
     }
 
     private String remove = "";
@@ -94,7 +111,7 @@ public class ManageActivity extends AppCompatActivity implements View.OnClickLis
 
     public void removerTela(View view){
 
-        Intent intent = new Intent(this, RemoverCidadeActivity.class);
+        Intent intent = new Intent(ManageActivity.this, RemoverCidadeActivity.class);
         startActivity(intent);
     }
 

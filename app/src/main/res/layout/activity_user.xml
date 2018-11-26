@@ -18,7 +18,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="COSH!"
+            android:text="@string/app_name"
             android:textAlignment="center"
             android:textColor="@color/accent_material_dark"
             android:textSize="50px" />
@@ -31,6 +31,7 @@
             android:id="@+id/spinnerEstado"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimary"
             android:textAlignment="center" />
 
         <Spinner
@@ -38,6 +39,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:entries="@array/cidades_array"
+            android:textColor="@color/colorPrimary"
             android:textAlignment="center" />
 
 
@@ -49,6 +51,7 @@
         <Button
             android:id="@+id/pesquisar"
             android:onClick="pesquisar"
+            android:textColor="@color/colorPrimaryTextBotao"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Pesquisar" />
@@ -56,6 +59,7 @@
         <Button
             android:id="@+id/editarDados"
             android:onClick="editarDados"
+            android:textColor="@color/colorPrimaryTextBotao"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Editar" />
@@ -63,6 +67,7 @@
         <Button
             android:id="@+id/manageActivity"
             android:onClick="editarCidades"
+            android:textColor="@color/colorPrimaryTextBotao"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Manutenção de cidades" />

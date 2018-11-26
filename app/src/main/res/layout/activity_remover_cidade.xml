@@ -11,12 +11,13 @@
         android:id="@+id/nomeCidade"
         android:hint="Nome da Cidade"
         android:layout_width="match_parent"
-
         android:layout_height="wrap_content" />
 
     <Button
         android:id="@+id/btnExcluir"
         android:text="Remover"
+        android:onClick="removerCidade"
+        android:textColor="@color/colorPrimaryTextBotao"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 

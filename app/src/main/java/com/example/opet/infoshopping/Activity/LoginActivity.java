@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -50,23 +51,54 @@ public class LoginActivity extends AppCompatActivity {
         String sEmail = editLogin.getText().toString();
         String sSenha = editSenha.getText().toString();
 
-        mAuth.signInWithEmailAndPassword(sEmail, sSenha)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()){
-                            Toast.makeText(LoginActivity.this, "Sucesso", Toast.LENGTH_SHORT).show();
+        if (sEmail.equals("") || sSenha.equals("")) {
 
-                            Intent intent = new Intent(LoginActivity.this, UserActivity.class);
-                            startActivity(intent);
+            Toast.makeText(this, "Todos campos devem ser preenchidos!", Toast.LENGTH_SHORT).show();
+
+        }
+
+        if (validarEmail(sEmail) == false) {
+
+            Toast.makeText(this, "Por favor, digite um email válido.", Toast.LENGTH_SHORT).show();
+
+        }
+        else {
+            mAuth.signInWithEmailAndPassword(sEmail, sSenha)
+                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()){
+                                Toast.makeText(LoginActivity.this, "Sucesso", Toast.LENGTH_SHORT).show();
+
+                                CleanUser();
+
+                                Intent intent = new Intent(LoginActivity.this, UserActivity.class);
+                                startActivity(intent);
+                            }
+                            else {
+                                Toast.makeText(LoginActivity.this, "Falha", Toast.LENGTH_SHORT).show();
+                            }
                         }
-                        else {
-                            Toast.makeText(LoginActivity.this, "Falha", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                } );
+                    } );
+
+        }
+
+
     }
 
+    private boolean validarEmail(final String email) {
+
+        if (Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            return true;
+        }
+        return false;
+
+    }
+
+    private void CleanUser(){
+        editLogin.setText(null);
+        editSenha.setText(null);
+    }
 
     /*public void logarUsuario(View v){
         String login = editLogin.getText().toString();

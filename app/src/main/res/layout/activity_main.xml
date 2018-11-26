@@ -32,11 +32,13 @@
             android:layout_height="wrap_content"
             android:onClick="logar"
             android:text="Login"
+            android:textColor="@color/colorPrimaryTextBotao"
             tools:layout_editor_absoluteX="16dp"
             tools:layout_editor_absoluteY="-2dp" />
 
         <Button
             android:id="@+id/cadastro"
+            android:textColor="@color/colorPrimaryTextBotao"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="cadastrar"
@@ -46,6 +48,7 @@
 
         <Button
             android:id="@+id/facebookLogin"
+            android:textColor="@color/colorPrimaryTextBotao"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="logarFacebook"
